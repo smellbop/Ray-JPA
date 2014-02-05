@@ -22,44 +22,28 @@
     template="/WEB-INF/templates/default.xhtml">
     <ui:define name="content">
         <h1>Welcome to JBoss!</h1>
+        
+        <h2>Tickets</h2>
+        <h:dataTable var = "_ticket" value="#{tickets}"
+        	rendered="#{not empty tickets}"
+        	styleClass="simpletablestyle">
+        	<h:column>
+        		#{_ticket.ticketId}
+        	</h:column>
+        	<h:column>
+        		#{_ticket.customer}
+        	</h:column>
+        	<h:column>
+        		#{_ticket.status}
+        	</h:column>
+        	<h:column>
+        		#{_ticket.ticketClass}
+        	</h:column>
+        	<h:column>
+        		#{_ticket.internalPriority}
+        	</h:column>
+        </h:dataTable>
 
-        <div>
-            <p>You have successfully deployed a Java EE 6 Enterprise
-                Application.</p>
-            <h3>Your application can run on:</h3>
-            <img src="resources/gfx/dualbrand_as7eap.png" />
-        </div>
-
-        <h:form id="reg">
-            <h2>Member Registration</h2>
-            <p>Enforces annotation-based constraints defined on the
-                model class.</p>
-            <h:panelGrid columns="3" columnClasses="titleCell">
-                <h:outputLabel for="name" value="Name:" />
-                <h:inputText id="name" value="#{newMember.name}" />
-                <h:message for="name" errorClass="invalid" />
-
-                <h:outputLabel for="email" value="Email:" />
-                <h:inputText id="email" value="#{newMember.email}" />
-                <h:message for="email" errorClass="invalid" />
-
-                <h:outputLabel for="phoneNumber" value="Phone #:" />
-                <h:inputText id="phoneNumber"
-                    value="#{newMember.phoneNumber}" />
-                <h:message for="phoneNumber" errorClass="invalid" />
-            </h:panelGrid>
-
-            <p>
-                <h:panelGrid columns="2">
-                    <h:commandButton id="register"
-                        action="#{memberController.register}"
-                        value="Register" styleClass="register" />
-                    <h:messages styleClass="messages"
-                        errorClass="invalid" infoClass="valid"
-                        warnClass="warning" globalOnly="true" />
-                </h:panelGrid>
-            </p>
-        </h:form>
         <h2>Members</h2>
         <h:panelGroup rendered="#{empty members}">
             <em>No registered members.</em>

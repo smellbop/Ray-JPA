@@ -16,4 +16,17 @@
 --
 
 -- You can use this file to load seed data into the database using SQL statements
-insert into Member (id, name, email, phone_number) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212') 
+insert into Member (id, name, email, phone_number) values (0, 'John Davidson', 'john.smith@mailinator.com', '2125551212') ;
+
+insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1001, 'SR', 'INPROG','MIAMI',3);
+insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1011, 'SR', 'INPROG','MIAMI',3);
+insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1101, 'SR', 'INPROG','MIAMI',3);
+insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1021, 'SR', 'PENDING','MIAMI',3);
+insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1022, 'SR', 'PENDING','MIAMI',4);
+insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1023, 'SR', 'QUEUED','MIAMI',4);
+insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1045, 'SR', 'QUEUED','MIAMI',4);
+insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1078, 'SR', 'INPROG','CNR',3);
+insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1080, 'SR', 'PENDING','CNR',3);
+insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1081, 'SR', 'INPROG','CNR',3);
+insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1097, 'SR', 'PENDING','FES',3);
+insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1099, 'SR', 'INPROG','FES',5);

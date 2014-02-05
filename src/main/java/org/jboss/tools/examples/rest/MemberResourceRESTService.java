@@ -40,8 +40,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.bpd.ray.data.MemberRepository;
 import org.bpd.ray.model.Member;
-import org.jboss.tools.examples.data.MemberRepository;
 import org.jboss.tools.examples.service.MemberRegistration;
 
 /**
