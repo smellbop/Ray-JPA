@@ -23,6 +23,40 @@
     <ui:define name="content">
         <h1>Welcome to JBoss!</h1>
         
+        <h2>Ticket Counts</h2>
+        <h:dataTable var="_counts" value="#{ticketCounts}"
+        	rendered="#{not empty ticketCounts}"
+        	styleClass="simpletablestyle">
+        	<h:column>
+        		<f:facet name="header">Customer</f:facet>
+        		#{_counts.customer}
+        	</h:column>
+        	<h:column>
+        		<f:facet name="header">P1</f:facet>
+        		#{_counts.p1}
+        	</h:column>
+        	<h:column>
+        		<f:facet name="header">P2</f:facet>
+        		#{_counts.p2}
+        	</h:column>
+        	<h:column>
+        		<f:facet name="header">P3</f:facet>
+        		#{_counts.p3}
+        	</h:column>
+        	<h:column>
+        		<f:facet name="header">P4</f:facet>
+        		#{_counts.p4}
+        	</h:column>
+        	<h:column>
+        		<f:facet name="header">P5</f:facet>
+        		#{_counts.p5}
+        	</h:column>
+        	<h:column>
+        		<f:facet name="header">P6</f:facet>
+        		#{_counts.p6}
+        	</h:column>
+        </h:dataTable>
+        
         <h2>Tickets</h2>
         <h:dataTable var = "_ticket" value="#{tickets}"
         	rendered="#{not empty tickets}"
