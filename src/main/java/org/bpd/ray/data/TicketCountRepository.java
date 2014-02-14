@@ -1,6 +1,7 @@
 package org.bpd.ray.data;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,8 +13,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.bpd.ray.model.CustomerHistory;
 import org.bpd.ray.model.Ticket;
-import org.bpd.ray.model.TicketCount;
+import org.joda.time.LocalDate;
 
 @ApplicationScoped
 public class TicketCountRepository {
@@ -68,14 +70,36 @@ public class TicketCountRepository {
 		List<String> customers = fetchAllCustomers();
 		
 		for(String customer : customers){
-			ticketCounts.add(new TicketCount(customer,getCountsForCustomer(customer)));
+			TicketCount tc = new TicketCount(customer,getCountsForCustomer(customer));
+			tc.setUp(isItUp(customer, tc.getTotal()));
+			ticketCounts.add(tc);
+			
 		}
 		
-//		for(Iterator it = customers.iterator(); it.hasNext();){
-//			
-//		}
-		
 		return ticketCounts;
+	}
+
+	private Boolean isItUp(String customer, Long tot) {
+		Long yesterday = new Long(0);
+		
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> q = cb.createQuery(Long.class);
+		Root<CustomerHistory> hist = q.from(CustomerHistory.class);
+		
+		//TODO select one only
+		q.multiselect(hist.get("total"));
+		
+		Date yesterDate = new LocalDate().minusDays(1).toDateTimeAtStartOfDay().toDate();
+		
+		Predicate w1 = cb.equal(hist.get("date"), yesterDate);
+		Predicate w2 = cb.equal(hist.get("customer"), customer);
+
+		q.where(w1,w2);
+		
+		yesterday = em.createQuery(q).getSingleResult();
+		
+		
+		return yesterday > tot;
 	}
 
 }

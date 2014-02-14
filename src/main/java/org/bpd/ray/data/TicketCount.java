@@ -1,9 +1,12 @@
-package org.bpd.ray.model;
+package org.bpd.ray.data;
+
+
 
 public class TicketCount {
 	private String customer;
 	private Long total;
 	private Long p1,p2,p3,p4,p5,p6;
+	private Boolean up = false;
 	
 	
 	public TicketCount(String customer, Long pri[]) {
@@ -19,8 +22,10 @@ public class TicketCount {
 	}
 	
 
-	
-	
+
+
+
+
 	public String getCustomer() {
 		return customer;
 	}
@@ -45,7 +50,14 @@ public class TicketCount {
 	public Long getP6() {
 		return p6;
 	}
+	public Boolean getUp() {
+		return up;
+	}
+	public void setUp(Boolean up) {
+		this.up = up;
+	}
 	
+
 	
 	
 }

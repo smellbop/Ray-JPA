@@ -18,6 +18,8 @@
 -- You can use this file to load seed data into the database using SQL statements
 insert into Member (id, name, email, phone_number) values (0, 'John Davidson', 'john.smith@mailinator.com', '2125551212') ;
 
+
+--current tickets
 insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1001, 'SR', 'INPROG','MIAMI',3);
 insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1011, 'SR', 'INPROG','MIAMI',3);
 insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1101, 'SR', 'INPROG','MIAMI',3);
@@ -30,3 +32,8 @@ insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1
 insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1081, 'SR', 'INPROG','CNR',3);
 insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1097, 'SR', 'PENDING','FES',3);
 insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1099, 'SR', 'INPROG','FES',5);
+
+--history for conditional rows
+insert into customerhistory(historyid,customer,date,total) values (1001,'MIAMI','2014-02-07',3);
+insert into customerhistory(historyid,customer,date,total) values (1002,'CNR','2014-02-07',3);
+insert into customerhistory(historyid,customer,date,total) values (1003,'FES','2014-02-07',3);
