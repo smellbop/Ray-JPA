@@ -86,20 +86,24 @@ public class TicketCountRepository {
 		CriteriaQuery<Long> q = cb.createQuery(Long.class);
 		Root<CustomerHistory> hist = q.from(CustomerHistory.class);
 		
-		//TODO select one only
+	
 		q.multiselect(hist.get("total"));
 		
+		//Date todayDate = new LocalDate().toDateTimeAtStartOfDay().toDate();
 		Date yesterDate = new LocalDate().minusDays(1).toDateTimeAtStartOfDay().toDate();
 		
-		Predicate w1 = cb.equal(hist.get("date"), yesterDate);
+		Predicate w1 = cb.equal(hist.<Date>get("date"), yesterDate);
+		//Predicate w1 = cb.between(hist.<Date>get("date"), yesterDate, todayDate);
 		Predicate w2 = cb.equal(hist.get("customer"), customer);
+		//TODO check for null
+		//Predicate w3
 
 		q.where(w1,w2);
 		
 		yesterday = em.createQuery(q).getSingleResult();
 		
 		
-		return yesterday > tot;
+		return yesterday < tot;
 	}
 
 }
