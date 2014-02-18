@@ -34,6 +34,6 @@ insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1
 insert into Ticket (ticketid, class, status, siteid, internalpriority) values (1099, 'SR', 'INPROG','FES',5);
 
 --history for conditional rows
-insert into customerhistory(historyid,customer,date,total) values (1001,'MIAMI','2014-02-16',4);
-insert into customerhistory(historyid,customer,date,total) values (1002,'CNR','2014-02-16',4);
-insert into customerhistory(historyid,customer,date,total) values (1003,'FES','2014-02-16',4);
+insert into customerhistory(historyid,customer,date,total) values (1001,'MIAMI','2014-02-17',4);
+insert into customerhistory(historyid,customer,date,total) values (1002,'CNR','2014-02-17',4);
+insert into customerhistory(historyid,customer,date,total) values (1003,'FES','2014-02-17',1);

@@ -201,3 +201,13 @@ input {
   color:#3883ce;
   text-decoration:none; 
 }
+
+tr.isUp {
+	background-color: red;
+}
+
+tr..isDown {
+	background-color: green;
+}
+
+

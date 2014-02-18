@@ -80,7 +80,7 @@ public class TicketCountRepository {
 	}
 
 	private Boolean isItUp(String customer, Long tot) {
-		Long yesterday = new Long(0);
+		Long yesterday = new Long(1000);
 		
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Long> q = cb.createQuery(Long.class);
@@ -100,7 +100,14 @@ public class TicketCountRepository {
 
 		q.where(w1,w2);
 		
-		yesterday = em.createQuery(q).getSingleResult();
+		
+		try {
+			yesterday = em.createQuery(q).getSingleResult();
+		} catch (Exception e) {
+			System.out.println("No data from previous day.");
+			e.printStackTrace();
+		}
+		
 		
 		
 		return yesterday < tot;
