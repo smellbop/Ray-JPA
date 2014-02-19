@@ -22,105 +22,38 @@
     xmlns:p="http://primefaces.org/ui"
     template="/WEB-INF/templates/default.xhtml">
     <ui:define name="content">
-        <h1>Welcome to JBoss!</h1>
        
-        <p:commandButton>"Submit"</p:commandButton>
-       
-  <!--       
-        <h2>Ticket Counts</h2>
-        <h:dataTable var="_counts" value="#{ticketCounts}"
+        <h:form>
+        	<p:dataTable var="_counts" value="#{ticketCounts}"
         	rendered="#{not empty ticketCounts}"
-        	styleClass="simpletablestyle"
-        	rowStyleClass="#{_counts.up == 'isUp' ? 'isUp' : 'isDown'}">
-        	<h:column>
-        		<f:facet name="header">Customer</f:facet>
-        		#{_counts.customer}
-        	</h:column>
-        	<h:column>
-        		<f:facet name="header">P1</f:facet>
-        		#{_counts.p1}
-        	</h:column>
-        	<h:column>
-        		<f:facet name="header">P2</f:facet>
-        		#{_counts.p2}
-        	</h:column>
-        	<h:column>
-        		<f:facet name="header">P3</f:facet>
-        		#{_counts.p3}
-        	</h:column>
-        	<h:column>
-        		<f:facet name="header">P4</f:facet>
-        		#{_counts.p4}
-        	</h:column>
-        	<h:column>
-        		<f:facet name="header">P5</f:facet>
-        		#{_counts.p5}
-        	</h:column>
-        	<h:column>
-        		<f:facet name="header">P6</f:facet>
-        		#{_counts.p6}
-        	</h:column>
-        	<h:column>
-        		<f:facet name="header">UP</f:facet>
-        		#{_counts.up}
-        	</h:column>
-        </h:dataTable>
-        
-        <h2>Tickets</h2>
-        <h:dataTable var = "_ticket" value="#{tickets}"
-        	rendered="#{not empty tickets}"
-        	styleClass="simpletablestyle">
-        	<h:column>
-        		#{_ticket.ticketId}
-        	</h:column>
-        	<h:column>
-        		#{_ticket.customer}
-        	</h:column>
-        	<h:column>
-        		#{_ticket.status}
-        	</h:column>
-        	<h:column>
-        		#{_ticket.ticketClass}
-        	</h:column>
-        	<h:column>
-        		#{_ticket.internalPriority}
-        	</h:column>
-        </h:dataTable>
-
-        <h2>Members</h2>
-        <h:panelGroup rendered="#{empty members}">
-            <em>No registered members.</em>
-        </h:panelGroup>
-        <h:dataTable var="_member" value="#{members}"
-            rendered="#{not empty members}"
-            styleClass="simpletablestyle">
-            <h:column>
-                <f:facet name="header">Id</f:facet>
-                #{_member.id}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Name</f:facet>
-                #{_member.name}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Email</f:facet>
-                #{_member.email}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Phone #</f:facet>
-                #{_member.phoneNumber}
-            </h:column>
-            <h:column>
-                <f:facet name="header">REST URL</f:facet>
-                <a
-                    href="#{request.contextPath}/rest/members/#{_member.id}">/rest/members/#{_member.id}</a>
-            </h:column>
-            <f:facet name="footer">
-            REST URL for all members: <a
-                    href="#{request.contextPath}/rest/members">/rest/members</a>
-            </f:facet>
-        </h:dataTable>
-        
-        -->
+        	rowStyleClass="#{_counts.up ? 'isUp' : null}">
+        	
+        	    <f:facet name="header">  
+            	Open Help Desk Requests
+        		</f:facet>
+        		<p:column headerText="Customer">
+					<h:outputText value="#{_counts.customer}" />
+        		</p:column>
+        		<p:column headerText="P1">
+					<h:outputText value="#{_counts.p1}" />
+        		</p:column>
+        		<p:column headerText="P2">
+					<h:outputText value="#{_counts.p2}" />
+        		</p:column>
+        		<p:column headerText="P3">
+					<h:outputText value="#{_counts.p3}" />
+        		</p:column>
+        		<p:column headerText="P4">
+					<h:outputText value="#{_counts.p4}" />
+        		</p:column>
+        		<p:column headerText="P5">
+					<h:outputText value="#{_counts.p5}" />
+        		</p:column>
+        		<p:column headerText="P6">
+					<h:outputText value="#{_counts.p6}" />
+        		</p:column>
+        	</p:dataTable>
+         </h:form>
+       
     </ui:define>
 </ui:composition>

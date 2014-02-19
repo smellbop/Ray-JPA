@@ -6,8 +6,8 @@ public class TicketCount {
 	private String customer;
 	private Long total;
 	private Long p1,p2,p3,p4,p5,p6;
-//	private Boolean up = false;
-	private String up = new String("isDown");
+	private Boolean up = false;
+//	private String up = new String("isDown");
 	
 	
 	public TicketCount(String customer, Long pri[]) {
@@ -51,15 +51,16 @@ public class TicketCount {
 	public Long getP6() {
 		return p6;
 	}
-	public String getUp() {
+	public Boolean getUp() {
 		return up;
 	}
 	public void setUp(Boolean up) {
-		if(up){
-		this.up = "isUp";
-		} else {
-			this.up = "isDown";
-		}
+		this.up = up;
+//		if(up){
+//		this.up = "isUp";
+//		} else {
+//			this.up = "isDown";
+//		}
 	}
 	
 

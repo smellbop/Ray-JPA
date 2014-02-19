@@ -14,15 +14,15 @@ import org.bpd.ray.model.Ticket;
 @ApplicationScoped
 public class TicketRepository {
 	@Inject
-	EntityManager em;
+	EntityManager sdEm;
 
 	public List<Ticket> findAllOrderedById() {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaBuilder cb = sdEm.getCriteriaBuilder();
 		CriteriaQuery<Ticket> criteria = cb.createQuery(Ticket.class);
 		Root<Ticket> ticket = criteria.from(Ticket.class);
 		
 		criteria.select(ticket).orderBy(cb.asc(ticket.get("ticketId")));
-		return em.createQuery(criteria).getResultList();
+		return sdEm.createQuery(criteria).getResultList();
 	}
 
 }

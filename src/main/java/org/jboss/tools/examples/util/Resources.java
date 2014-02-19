@@ -39,11 +39,15 @@ import javax.persistence.PersistenceContext;
  */
 public class Resources {
     // use @SuppressWarnings to tell IDE to ignore warnings about field not being referenced directly
-    @SuppressWarnings("unused")
+//    @SuppressWarnings("unused")
+  //  @Produces
+  //  @PersistenceContext(unitName="primary")
+   // private EntityManager em;
+    
     @Produces
-    @PersistenceContext
-    private EntityManager em;
-
+    @PersistenceContext(unitName="sdesk")
+    private EntityManager sdEm;
+    
     @Produces
     public Logger produceLog(InjectionPoint injectionPoint) {
         return Logger.getLogger(injectionPoint.getMember().getDeclaringClass().getName());
