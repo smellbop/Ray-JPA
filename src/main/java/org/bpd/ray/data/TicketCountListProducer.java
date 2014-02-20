@@ -23,7 +23,12 @@ public class TicketCountListProducer {
 	
 	@PostConstruct
 	private void retrieveAllCounts(){
-		ticketCounts = ticketCountRepo.findAllCounts();
+		try {
+			ticketCounts = ticketCountRepo.findAllCounts();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

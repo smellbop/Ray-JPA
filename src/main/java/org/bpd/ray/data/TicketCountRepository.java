@@ -20,7 +20,7 @@ import org.joda.time.LocalDate;
 @ApplicationScoped
 public class TicketCountRepository {
 	@Inject
-	private EntityManager em;	
+	EntityManager sdEm;
 	
 	public Long[] getCountsForCustomer(String customer){
 		Long[] counts = new Long[7];
@@ -37,7 +37,7 @@ public class TicketCountRepository {
 	}
 
 	private Long getCountForPriority(String customer, int i) {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaBuilder cb = sdEm.getCriteriaBuilder();
 		CriteriaQuery<Long> q = cb.createQuery(Long.class);
 		Root<Ticket> ticket = q.from(Ticket.class);
 		
@@ -50,18 +50,31 @@ public class TicketCountRepository {
 		
 		q.where(w1,w2,w3,w4);
 
-		return em.createQuery(q).getSingleResult();
+		return sdEm.createQuery(q).getSingleResult();
 	}
 
 	public List<String> fetchAllCustomers(){
-		CriteriaBuilder cb = em.getCriteriaBuilder();
+		List<String> include = new ArrayList<String>();
+		include.add("CARLISLE");
+		include.add("CNR");
+		include.add("DRAX");
+		include.add("FES");
+		include.add("MIAMI");
+		include.add("MOJ");
+		include.add("PREMIER");
+		include.add("SERCO");
+		include.add("TES");
+		include.add("TFM");
+	
+		CriteriaBuilder cb = sdEm.getCriteriaBuilder();
 		CriteriaQuery<String> q = cb.createQuery(String.class);
 		Root<Ticket> ticket = q.from(Ticket.class);
 		
 		q.multiselect(ticket.get("customer")).distinct(true);
 		
+		q.where(cb.isNotNull(ticket.get("customer")), cb.isTrue(ticket.get("customer").in(include)));
 		
-		return em.createQuery(q).getResultList();
+		return sdEm.createQuery(q).getResultList();
 	}
 	
 	public List<TicketCount> findAllCounts() {
@@ -71,7 +84,9 @@ public class TicketCountRepository {
 		
 		for(String customer : customers){
 			TicketCount tc = new TicketCount(customer,getCountsForCustomer(customer));
-			tc.setUp(isItUp(customer, tc.getTotal()));
+			//Set this when table/database exists
+			//tc.setUp(isItUp(customer, tc.getTotal())); 
+			tc.setUp(false);
 			ticketCounts.add(tc);
 			
 		}
@@ -82,7 +97,7 @@ public class TicketCountRepository {
 	private Boolean isItUp(String customer, Long tot) {
 		Long yesterday = new Long(1000);
 		
-		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaBuilder cb = sdEm.getCriteriaBuilder();
 		CriteriaQuery<Long> q = cb.createQuery(Long.class);
 		Root<CustomerHistory> hist = q.from(CustomerHistory.class);
 		
@@ -102,7 +117,7 @@ public class TicketCountRepository {
 		
 		
 		try {
-			yesterday = em.createQuery(q).getSingleResult();
+			yesterday = sdEm.createQuery(q).getSingleResult();
 		} catch (Exception e) {
 			System.out.println("No data from previous day.");
 			e.printStackTrace();

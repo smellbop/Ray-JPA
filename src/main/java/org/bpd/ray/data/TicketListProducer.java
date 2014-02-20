@@ -31,6 +31,11 @@ public class TicketListProducer {
 
 	@PostConstruct
 	private void retrieveAllTicketsOrderedById() {
-		tickets = ticketRepository.findAllOrderedById();		
+		try {
+			tickets = ticketRepository.findAllOrderedById();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 }

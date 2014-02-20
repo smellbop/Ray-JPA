@@ -8,7 +8,9 @@
    <persistence-unit name="sdesk">
       <jta-data-source>java:jboss/datasources/SDESK</jta-data-source>
       <properties>
-         <property name="hibernate.show_sql" value="false" />
+         <!-- Properties for Hibernate -->
+         <property name="hibernate.show_sql" value="true" />
+         <property name="hibernate.default_schema" value="maximo"/>
       </properties>
    </persistence-unit>
            
