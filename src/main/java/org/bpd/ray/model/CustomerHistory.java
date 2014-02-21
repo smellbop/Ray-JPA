@@ -12,7 +12,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Entity
+@Entity(name="customerhistory")
 public class CustomerHistory {
 	@Id
 	@GeneratedValue

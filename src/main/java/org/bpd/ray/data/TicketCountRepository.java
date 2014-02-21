@@ -45,7 +45,7 @@ public class TicketCountRepository {
 		
 		Predicate w1 = cb.equal(ticket.get("customer"),customer);
 		Predicate w2 = cb.equal(ticket.get("internalPriority"), i);
-		Predicate w3 = ticket.get("status").in("INPROG","PENDING","QUEUED");
+		Predicate w3 = ticket.get("status").in("INPROG","PENDING","QUEUED","NEW");
 		Predicate w4 = cb.equal(ticket.get("ticketClass"),"SR");
 		
 		q.where(w1,w2,w3,w4);
